@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-. standalone.env
+#. standalone.env
 pscfg=/etc/supervisord.conf
 
 # linking so all files can access kolla-common.sh
