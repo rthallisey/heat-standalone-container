@@ -1,0 +1,9 @@
+heatstandalone:
+  image: kollaglue/centos-rdo-heat-standalone:latest
+  name: heat-standalone
+  net: "host"
+  restart: always
+  env_file:
+   - openstack.env
+  volumes:
+   - /var/run/docker.sock:/var/run/docker.sock

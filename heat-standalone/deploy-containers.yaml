@@ -1,0 +1,32 @@
+heat_template_version: 2015-04-30
+# instack undercloud: glance, heat, neutron, nova, ironic, tuskar, ceilometer,
+# swift, rabbit
+
+description: |
+  This is a Heat template to deploy example OpenStack services inside Docker
+  containers.
+
+parameters:
+  MariaBindAddress:
+    type: string
+    default: 127.0.0.1
+  MariaRootPassword:
+    type: string
+    default: kolla
+  RabbitServiceHost:
+    type: string
+    default: 127.0.0.1
+
+resources:
+  mariadb:
+    type: DockerInc::Docker::Container
+    properties:
+      image: kollaglue/centos-rdo-mariadb-app
+      env: [ 'BIND_ADDRESS={ get_param: MariaBindAddress}',
+             'MARIADB_ROOT_PASSWORD={ get_param: MariaRootPassword }' ]
+
+  rabbitmq:
+    type: DockerInc::Docker::Container
+    properties:
+      image: kollaglue/centos-rdo-rabbitmq
+      env: [ 'RABBITMQ_SERVICE_HOST={ get_param: RabbitServiceHost}' ]

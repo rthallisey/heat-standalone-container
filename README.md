@@ -1,2 +1,4 @@
-# heat-standalone-container
-Use Heat as a standalone container to spawn an undercloud.
+heat-standalone
+==============
+
+Create a standalone heat container to spawn the undercloud.
